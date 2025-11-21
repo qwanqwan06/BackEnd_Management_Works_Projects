@@ -1,5 +1,5 @@
 # Bước 1: Build ứng dụng bằng Maven
-FROM maven:3.9.6-eclipse-temurin-17 AS build
+FROM maven:3.9.9-eclipse-temurin-21 AS build
 WORKDIR /app
 COPY . .
 # Build file .jar và bỏ qua test để tiết kiệm thời gian (có thể bỏ -DskipTests nếu muốn chạy test)
