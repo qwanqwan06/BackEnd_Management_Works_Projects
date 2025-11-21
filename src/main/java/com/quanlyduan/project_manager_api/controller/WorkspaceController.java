@@ -26,7 +26,7 @@ import com.quanlyduan.project_manager_api.dto.response.WorkspaceResponse;
 
 @RestController
 @RequestMapping("/api/companies/{companyId}/workspaces") 
-@CrossOrigin("*")
+
 public class WorkspaceController {
 
     private final WorkspaceService workspaceService;

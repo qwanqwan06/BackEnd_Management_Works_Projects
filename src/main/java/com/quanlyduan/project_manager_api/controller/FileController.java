@@ -23,7 +23,7 @@ import java.nio.file.Files;
 
 @Controller
 @RequestMapping("/api/files") // We'll create a new endpoint for all files
-@CrossOrigin("*")
+
 public class FileController {
 
     // Use the same upload directory as your TaskAttachmentService

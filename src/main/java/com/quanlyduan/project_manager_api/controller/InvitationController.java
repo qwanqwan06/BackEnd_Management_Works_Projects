@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/invitations")
-@RequiredArgsConstructor
-@CrossOrigin("*")
+
+
 public class InvitationController {
 
     private final CompanyService companyService; // Dùng lại logic trong CompanyService
 
+    public InvitationController(CompanyService companyService) {
+        this.companyService = companyService;
+    }
     // API XAC THUC LOI MOI
     // API này CẦN xác thực, người dùng phải login để gọi
     @PostMapping("/accept")

@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/projects/{projectId}/statuses") // API con của Project
-@CrossOrigin("*")
+
 public class ProjectStatusController {
 
     private final ProjectStatusService projectStatusService;

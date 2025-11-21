@@ -26,7 +26,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 @RestController
 @RequestMapping("/api/companies")
-@CrossOrigin("*")
 
 public class CompanyController {
 
