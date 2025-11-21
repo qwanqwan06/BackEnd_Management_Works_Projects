@@ -8,7 +8,7 @@ pipeline {
         TAG = 'latest'
         
         // --- THÔNG TIN RAILWAY ---
-        ENV_DB_URL = 'jdbc:mysql://hopper.proxy.rlwy.net:24325/railway?useSSL=false&allowPublicKeyRetrieval=true'
+        ENV_DB_URL = 'jdbc:mysql://hopper.proxy.rlwy.net:24325/railway?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8'
         ENV_DB_USER = 'root'
         ENV_DB_PASS = 'zPWNrKJchrSOVkwWKMMNezWuuqLoLNC'
         
