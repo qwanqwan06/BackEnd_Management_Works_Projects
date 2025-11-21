@@ -1,21 +1,26 @@
-# Bước 1: Build ứng dụng bằng Maven
+# ========== STEP 1: BUILD STAGE ==========
 FROM maven:3.9.9-eclipse-temurin-21 AS build
-WORKDIR /app
-COPY . .
-# Build file .jar và bỏ qua test để tiết kiệm thời gian (có thể bỏ -DskipTests nếu muốn chạy test)
-RUN mvn clean package -DskipTests
 
-# Bước 2: Chạy ứng dụng bằng JDK rút gọn
-FROM eclipse-temurin:21-jdk-alpine
 WORKDIR /app
-# Copy file .jar từ bước build (đảm bảo pom.xml build ra tên file đúng hoặc dùng *.jar)
+
+# Copy pom trước để cache dependency
+COPY pom.xml .
+
+# Download dependencies (dùng cache nếu pom.xml không đổi)
+RUN mvn -B dependency:go-offline
+
+# Copy toàn bộ source
+COPY src ./src
+
+RUN mvn -B clean package -DskipTests
+
+# ========== STEP 2: RUNTIME ==========
+FROM eclipse-temurin:21-jdk-alpine
+
+WORKDIR /app
+
 COPY --from=build /app/target/*.jar app.jar
 
-# Tạo thư mục upload tạm thời để tránh lỗi
-RUN mkdir -p /tmp/uploads
-
-# Port mặc định của Spring Boot trong cấu hình trên
 EXPOSE 8082
 
-# Lệnh chạy
-ENTRYPOINT ["java","-jar","app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
